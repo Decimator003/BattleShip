@@ -1,4 +1,4 @@
-import setNamePage from "./setName";
+import setNamePage from "./setName.js";
 function initialLoad() {
   setNamePage();
 }

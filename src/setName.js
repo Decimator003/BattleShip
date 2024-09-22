@@ -1,4 +1,4 @@
-import setShip from "./setShip";
+import setShip from "./setShip.js";
 
 const setNamePage = () => {
   const container = document.querySelector(".container");
