@@ -1,0 +1,382 @@
+* {
+    /* font */
+    font-family: "Handjet", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "ELGR" 1, "ELSH" 2;
+  }
+  body {
+    background: rgb(118, 122, 93);
+    background: radial-gradient(
+      circle,
+      rgba(118, 122, 93, 1) 0%,
+      rgba(47, 53, 78, 1) 69%
+    );
+    animation: gradient 8s ease-in infinite;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo {
+    font-family: "Rubik Pixels", system-ui;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 100px;
+  }
+  
+  /* name page */
+  #main-logo {
+    font-family: "Rubik Pixels", system-ui;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 140px;
+    margin-bottom: 0;
+    opacity: 0; /* Initially hidden */
+    background-image: linear-gradient(
+      to right,
+      #1b1a27,
+      #000000
+    ); /* Gradient effect */
+    background-clip: text; /* Ensures the gradient affects the text */
+    -webkit-background-clip: text;
+    color: transparent; /* Hide the original text color */
+    transition: opacity 2s ease-in-out 1s;
+  }
+  
+  body.loaded #main-logo {
+    opacity: 1; /* Make the text visible */
+  }
+  
+  #name-page {
+    position: relative;
+  }
+  
+  .form-div {
+    position: absolute;
+    top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    opacity: 90%;
+    border-radius: 0.75rem;
+    padding: 30px 10px 30px 10px;
+    opacity: 0;
+    transition: opacity 2s ease-in-out 4s;
+  }
+  body.loaded .form-div {
+    opacity: 1; /* Make the text visible */
+  }
+  
+  .enter-name {
+    font-size: 48px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #user-name {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 30px;
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+  
+  #name-submit,
+  #orientation-btn,
+  #play-again {
+    background-color: #111827;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0.75rem 1.2rem;
+    text-align: center;
+    text-decoration: none #6b7280 solid;
+    text-decoration-thickness: auto;
+    transition-duration: 0.2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+  }
+  
+  #name-submit:hover,
+  #play-again:hover,
+  #orientation-btn:hover {
+    background-color: #374151;
+  }
+  
+  #name-submit:focus,
+  #play-again:focus,
+  #orientation-btn:focus {
+    box-shadow: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  
+  @media (min-width: 768px) {
+    #name-submit,
+    #orientation-btn,
+    #play-again {
+      padding: 0.75rem 1.5rem;
+    }
+  }
+  
+  #orientation-btn {
+    margin-bottom: 20px;
+  }
+  
+  .battleship-img {
+    opacity: 0;
+    position: absolute;
+    top: 2px;
+    background-image: url("./assets/submarine-art.png");
+    width: 800px;
+    height: 800px;
+    background-size: cover;
+    transition: opacity 2s ease-in-out 2s;
+  }
+  body.loaded .battleship-img {
+    opacity: 1; /* Make the text visible */
+  }
+  
+  /* set ship page */
+  
+  .instruction {
+    font-size: 40px;
+    padding-bottom: 20px;
+    font-weight: 500;
+    color: #ffffffe3;
+  }
+  #user-set-ship {
+    width: 600px;
+    height: 600px;
+  }
+  .boards {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .gameboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    position: relative;
+    box-shadow: 0 -5px 3px -3px black, 0 5px 3px -3px black;
+  }
+  
+  .cell {
+    background-color: #162c4c;
+    border: 2px solid #fff;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .cell:hover {
+    /* background-color: #2e4668; */
+    cursor: crosshair;
+    transition: all 0.3s ease 0s;
+  }
+  #player-two-board .cell:hover {
+    background-color: #96180a;
+  }
+  
+  .highlight {
+    background-color: rgba(130, 221, 156, 0.928);
+  }
+  
+  .invalid-highlight {
+    background-color: red;
+    pointer-events: none;
+  }
+  
+  .ship-placed {
+    pointer-events: none;
+    background-color: rgb(4, 28, 60);
+  }
+  
+  /* game play page */
+  
+  #game-container {
+    width: 100%;
+    height: 100%;
+  }
+  #game-page {
+    width: 100%;
+  }
+  #game-page-logo {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  .board-label {
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #fff;
+    color: #111827;
+    font-weight: 600;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #376dbd;
+  }
+  /* Game Message animations */
+  .gameMsg {
+    background-color: none;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-size: 40px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 0.15em; /* Adjust as needed */
+    animation: typing 2.5s steps(40, end), step-start infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  /* ship svg elements and divs */
+  .svg-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute; /* Absolute positioning to overlay cells */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Make sure the SVG doesn’t interfere with mouse events */
+    z-index: 1; /* Ensure the SVG is above the cells */
+  }
+  
+  .ship-svg {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+  }
+  
+  .svg-div .y {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%) rotate(90deg); /* Center and rotate */
+    transform-origin: center;
+  }
+  
+  .cpu-hidden {
+    display: none;
+  }
+  
+  .sunk-ship {
+    filter: grayscale(100%) brightness(0) sepia(100%) hue-rotate(180deg)
+      saturate(10000%);
+  }
+  
+  /* cell clicking and UI handling */
+  .clicked {
+    pointer-events: none;
+  }
+  
+  .missed-cell,
+  .hit-cell {
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .missed-cell {
+    background-image: url("./assets/white-circle.svg");
+  }
+  .hit-cell {
+    background-image: url("./assets/red-circle.svg");
+  }
+  
+  #player-one-board {
+    pointer-events: none;
+  }
+  .disabled {
+    pointer-events: none;
+  }
+  .user,
+  .cpu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #player-one-board,
+  #player-two-board {
+    width: 600px;
+    height: 600px;
+  }
+  
+  #play-again {
+    margin: 20px;
+  }
+  
+  /* footer */
+  .footer {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(4, 28, 60);
+    width: 100vw;
+    margin: 0 auto;
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
